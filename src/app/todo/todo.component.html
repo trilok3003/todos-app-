@@ -1,0 +1,39 @@
+<div class="container todo-form mb-3 w-50">
+    <form>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" [(ngModel)]="title" class="form-control" placeholder="Enter the title">
+        </div>
+        <div class="form-group">
+            <label for="title">Description</label>
+            <input type="text" name="description" [(ngModel)]="description" class="form-control"
+                placeholder="Enter description">
+        </div>
+        <button type="submit" (click)="submit()" class="btn btn-success">Add</button>
+    </form>
+</div>
+
+
+<div class="container todo-data ">
+    <input class="form-control col-md-3 mb-2" placeholder="Search Here..." [(ngModel)]="search">
+
+    <table class="table">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos | filter:search; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{todo.title}}</td>
+                <td>
+                    <a routerLink="../view/{{todo.id}}" class="btn btn-small btn-info">View</a>
+                    <a routerLink="../edit/{{todo.id}}" class="btn btn-small btn-warning ml-2">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
